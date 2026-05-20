@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Attendance</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-gray-100 flex justify-center items-center min-h-screen">
+    <form id="attendanceForm" class="bg-white p-8 rounded shadow w-96">
+      <h1 class="text-2xl font-bold mb-6 text-center">
+        Simulate Fingerprint Scan
+      </h1>
+
+      <input
+        type="text"
+        id="fingerprintId"
+        placeholder="Enter Fingerprint ID"
+        class="w-full border p-3 mb-4 rounded"
+      />
+
+      <button class="bg-green-600 text-white w-full p-3 rounded">
+        Mark Attendance
+      </button>
+    </form>
+
+    <script src="../js/attendance.js"></script>
+  </body>
+</html>
