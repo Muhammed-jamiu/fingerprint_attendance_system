@@ -1,9 +1,6 @@
 const Fingerprint = require("../models/Fingerprint");
 
-// =======================================
 // CAPTURE FINGERPRINT
-// =======================================
-
 exports.captureFingerprint = async (req, res) => {
   try {
     // fake generated fingerprint ID
@@ -13,11 +10,9 @@ exports.captureFingerprint = async (req, res) => {
     // fake fingerprint images
 
     const images = [
-      "https://i.imgur.com/7sKQ9P4.png",
+      "../public/fingerprint_1.jpg",
 
-      "https://i.imgur.com/Ws6X7jK.png",
-
-      "https://i.imgur.com/0mKXcgk.png",
+      "../public/fingerprint_2.jpg",
     ];
 
     // random image
@@ -32,15 +27,12 @@ exports.captureFingerprint = async (req, res) => {
       image,
     });
   } catch (error) {
-    res.status(500).json({
-      message: "Capture failed",
-    });
+    res.status(500);
+    throw new Error("Capture failed");
   }
 };
 
-// =======================================
 // SAVE FINGERPRINT
-// =======================================
 
 exports.saveFingerprint = async (req, res) => {
   try {
@@ -53,9 +45,8 @@ exports.saveFingerprint = async (req, res) => {
     });
 
     if (exists) {
-      return res.json({
-        message: "Fingerprint already exists",
-      });
+      res.status(400);
+      throw new Error("Fingerprint already exists");
     }
 
     // save
@@ -68,14 +59,12 @@ exports.saveFingerprint = async (req, res) => {
 
     res.status(201).json({
       success: true,
-
       message: "Fingerprint saved successfully",
 
-      fingerprint,
+      data: fingerprint,
     });
   } catch (error) {
-    res.status(500).json({
-      message: "Failed to save fingerprint",
-    });
+    res.status(500);
+    throw new Error("Failed to save fingerprint");
   }
 };

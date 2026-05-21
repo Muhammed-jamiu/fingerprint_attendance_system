@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 
 //loading database connection
-const connectDB = require("./config/db");
+const connectDB = require("../server/src/config/db");
 
 //loading route modules
 const authRoutes = require("../server/src/routes/authRoutes");
@@ -17,6 +17,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+// global error handler
 app.use(errorHandler);
 
 //loading routes section

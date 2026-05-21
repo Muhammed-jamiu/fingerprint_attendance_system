@@ -1,6 +1,6 @@
 const express = require("express");
-const { authorize } = require("../middlewares");
-const { protect } = require("../middlewares/protect");
+const { authorize } = require("../middlewares/authorize");
+// const { protect } = require("../middlewares/protect");
 const router = express.Router();
 
 const {
@@ -10,6 +10,6 @@ const {
 
 router.post("/", registerStudent);
 
-router.get("/", protect, authorize("admin"), getStudents);
+router.get("/", authorize("admin"), getStudents);
 
 module.exports = router;

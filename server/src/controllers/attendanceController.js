@@ -10,9 +10,11 @@ exports.markAttendance = async (req, res) => {
   });
 
   if (!student) {
-    return res.status(404).json({
-      message: "Fingerprint not found",
-    });
+    // return res.status(404).json({
+    //   message: "Fingerprint not found",
+    // });
+    res.status(404);
+    throw new Error("Fingerprint not found");
   }
 
   const alreadyMarked = await Attendance.findOne({
@@ -24,9 +26,8 @@ exports.markAttendance = async (req, res) => {
   });
 
   if (alreadyMarked) {
-    return res.json({
-      message: "Attendance already marked today",
-    });
+    res.status(400);
+    throw new Error("Attendance already marked today");
   }
 
   await Attendance.create({
@@ -43,6 +44,11 @@ exports.getStats = async (req, res) => {
   const students = await User.countDocuments({
     role: "student",
   });
+
+  if (students <= 0) {
+    res.status(404);
+    throw new Error("No students found");
+  }
 
   const attendance = await Attendance.countDocuments();
 
