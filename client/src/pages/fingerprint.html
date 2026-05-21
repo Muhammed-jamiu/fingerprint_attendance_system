@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Fingerprint Capture</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white p-10 rounded-2xl shadow-xl w-[500px]">
+      <h1 class="text-3xl font-bold mb-8 text-center">Fingerprint Capture</h1>
+
+      <!-- THUMB SELECT -->
+
+      <div class="flex justify-center gap-10 mb-8">
+        <label class="flex items-center gap-2">
+          <input type="radio" name="thumb" value="left" checked />
+
+          Left Thumb
+        </label>
+
+        <label class="flex items-center gap-2">
+          <input type="radio" name="thumb" value="right" />
+
+          Right Thumb
+        </label>
+      </div>
+
+      <!-- FINGERPRINT DISPLAY -->
+
+      <div
+        class="relative w-72 h-72 border-4 border-dashed border-gray-400 rounded-2xl mx-auto overflow-hidden bg-gray-50 flex items-center justify-center"
+      >
+        <!-- FINGER IMAGE -->
+
+        <img id="fingerprintImage" class="hidden w-52 z-10" />
+
+        <!-- PLACEHOLDER -->
+
+        <p id="placeholder" class="text-gray-400">Fingerprint Preview</p>
+
+        <!-- SCAN LINE -->
+
+        <div
+          id="scanLine"
+          class="hidden absolute top-0 left-0 w-full h-2 bg-green-500 animate-bounce"
+        ></div>
+      </div>
+
+      <!-- GENERATED ID -->
+
+      <div class="mt-8">
+        <label class="font-semibold"> Generated Fingerprint ID </label>
+
+        <input
+          type="text"
+          id="fingerprintId"
+          readonly
+          class="w-full border p-3 rounded-lg mt-2 bg-gray-100"
+        />
+      </div>
+
+      <!-- BUTTONS -->
+
+      <div class="flex gap-4 mt-8">
+        <button
+          id="captureBtn"
+          class="bg-blue-600 text-white flex-1 p-4 rounded-xl"
+        >
+          Capture Fingerprint
+        </button>
+
+        <button
+          id="saveBtn"
+          class="bg-green-600 text-white flex-1 p-4 rounded-xl"
+        >
+          Save Fingerprint
+        </button>
+      </div>
+    </div>
+
+    <script src="./fingerprint.js"></script>
+  </body>
+</html>
