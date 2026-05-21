@@ -1,13 +1,14 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 
 //loading database connection
 const connectDB = require("../server/src/config/db");
 
 //loading route modules
 const authRoutes = require("../server/src/routes/authRoutes");
-const studentRoutes = require("../server/src/routes/studentRoutes");
+// const studentRoutes = require("../server/src/routes/studentRoutes");
 const attendanceRoutes = require("../server/src/routes/attendanceRoutes");
 const fingerprintRoutes = require("../server/src/routes/fingerprintRoutes");
 const errorHandler = require("../server/src/middlewares/errorMiddleware");
@@ -15,14 +16,19 @@ const errorHandler = require("../server/src/middlewares/errorMiddleware");
 //middleware section
 const app = express();
 
-app.use(cors());
 app.use(express.json());
 // global error handler
 app.use(errorHandler);
+app.use(
+  cors({
+    origin: "http://127.0.0.1:5500",
+    credentials: true,
+  }),
+);
+app.use("/public", express.static(path.join(__dirname, "public")));
 
 //loading routes section
 app.use("/api/auth", authRoutes);
-app.use("/api/students", studentRoutes);
 app.use("/api/attendance", attendanceRoutes);
 app.use("/api/fingerprint", fingerprintRoutes);
 

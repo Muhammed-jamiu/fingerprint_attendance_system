@@ -14,6 +14,10 @@ const userSchema = new mongoose.Schema(
       required: true,
       trim: true,
       lowercase: true,
+      match: [
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+        "Please fill a valid email address",
+      ],
     },
 
     password: {
@@ -29,7 +33,12 @@ const userSchema = new mongoose.Schema(
       trim: true,
     },
 
-    fingerprintId: String,
+    fingerprintId: {
+      type: String,
+      unique: true,
+      required: true,
+      trim: true,
+    },
 
     role: {
       type: String,

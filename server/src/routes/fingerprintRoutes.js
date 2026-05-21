@@ -1,7 +1,7 @@
 const express = require("express");
 
 const router = express.Router();
-
+// const { authorize } = require("../../src/middlewares/authMiddleware");
 const {
   captureFingerprint,
   saveFingerprint,

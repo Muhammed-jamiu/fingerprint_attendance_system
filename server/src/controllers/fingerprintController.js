@@ -3,20 +3,16 @@ const Fingerprint = require("../models/Fingerprint");
 // CAPTURE FINGERPRINT
 exports.captureFingerprint = async (req, res) => {
   try {
+    // const { thumb,  } = req.body;
     // fake generated fingerprint ID
-
     const fingerprintId = "FP" + Math.floor(100000 + Math.random() * 900000);
-
     // fake fingerprint images
-
     const images = [
-      "../public/fingerprint_1.jpg",
+      "http://localhost:5000/public/fingerprint_1.jpg",
 
-      "../public/fingerprint_2.jpg",
+      "http://localhost:5000/public/fingerprint_2.jpg",
     ];
-
     // random image
-
     const image = images[Math.floor(Math.random() * images.length)];
 
     res.json({
@@ -33,24 +29,19 @@ exports.captureFingerprint = async (req, res) => {
 };
 
 // SAVE FINGERPRINT
-
 exports.saveFingerprint = async (req, res) => {
   try {
     const { thumb, fingerprintId, image } = req.body;
 
     // prevent duplicate
-
     const exists = await Fingerprint.findOne({
       fingerprintId,
     });
-
     if (exists) {
       res.status(400);
       throw new Error("Fingerprint already exists");
     }
-
-    // save
-
+    // save fingerprint data to database
     const fingerprint = await Fingerprint.create({
       thumb,
       fingerprintId,
