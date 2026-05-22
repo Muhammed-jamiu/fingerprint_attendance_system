@@ -26,25 +26,19 @@ const userSchema = new mongoose.Schema(
       minlength: 6,
     },
 
-    matricNumber: {
-      type: String,
-      unique: true,
-      required: true,
-      trim: true,
-    },
+    // matricNumber: {
+    //   type: String,
+    //   unique: true,
+    //   required: true,
+    //   trim: true,
+    // },
 
-    fingerprintId: {
-      type: String,
-      unique: true,
-      required: true,
-      trim: true,
-    },
-
-    role: {
-      type: String,
-      enum: ["student", "admin"],
-      default: "student",
-    },
+    // fingerprintId: {
+    //   type: String,
+    //   unique: true,
+    //   required: true,
+    //   trim: true,
+    // },
   },
 
   {

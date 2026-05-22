@@ -18,7 +18,7 @@ exports.captureFingerprint = async (req, res) => {
     res.json({
       success: true,
 
-      fingerprintId,
+      // fingerprintId,
 
       image,
     });

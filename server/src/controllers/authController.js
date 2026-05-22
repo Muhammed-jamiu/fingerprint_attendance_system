@@ -4,16 +4,17 @@ const jwt = require("jsonwebtoken");
 
 //register Student Logic
 exports.registerStudent = async (req, res) => {
-  const { fullName, matricNumber, fingerprintId, password, email, role } =
-    req.body;
+  const { fullName, password, email } = req.body;
 
+  //hashing password
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
+
+  //register student/admin
   const student = await User.create({
     fullName,
-    matricNumber,
-    fingerprintId,
-    password,
+    password: hashedPassword,
     email,
-    role,
   });
 
   res.status(201).json({
@@ -22,21 +23,16 @@ exports.registerStudent = async (req, res) => {
   });
 };
 
-exports.getStudents = async (req, res) => {
-  const students = await User.find({
-    role: "student",
-  });
-
-  res.json({
-    data: students,
-  });
-};
+// exports.getStudents = async (req, res) => {
+//   const students = await User.find({ matricNo });
+//   res.json({
+//     data: students,
+//   });
+// };
 
 //login Student Logic
-
 exports.login = async (req, res) => {
   const { email, password } = req.body;
-
   const user = await User.findOne({ email });
 
   if (!user) {
@@ -60,6 +56,8 @@ exports.login = async (req, res) => {
       expiresIn: process.env.JWT_EXPIRES_IN,
     },
   );
+
+  console.log(token);
 
   res.json({
     token,

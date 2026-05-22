@@ -2,6 +2,15 @@ const studentCount = document.getElementById("studentCount");
 
 const attendanceCount = document.getElementById("attendanceCount");
 
+function logout() {
+  const logoutBtn = document.getElementById("logoutBtn");
+
+  logoutBtn.addEventListener("click", () => {
+    localStorage.removeItem("token");
+    window.location.href = "./login.html";
+  });
+}
+// studentCount
 async function loadDashboardStats() {
   try {
     const response = await fetch("http://localhost:5000/api/attendance/stats");
@@ -13,8 +22,7 @@ async function loadDashboardStats() {
     attendanceCount.innerText = data.attendance;
   } catch (error) {
     console.log(error);
-
-    alert("Failed to load dashboard data");
+    // alert("Failed to load dashboard data");
   }
 }
 

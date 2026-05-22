@@ -11,29 +11,38 @@
   <body class="bg-gray-100 p-10">
     <form id="studentForm" class="bg-white p-8 rounded shadow max-w-lg mx-auto">
       <h1 class="text-2xl font-bold mb-6">Register Student</h1>
+      <div class="">
+        <label for="fullName">Full Name</label>
+        <input
+          type="text"
+          id="fullName"
+          placeholder="Enter full name"
+          class="w-full border p-3 mb-4 rounded"
+        />
+      </div>
 
-      <input
-        type="text"
-        id="fullName"
-        placeholder="Full Name"
+      <div class="">
+        <label for="matricNumber">Matric Number</label>
+        <input
+          type="text"
+          id="matricNumber"
+          placeholder="Enter matric number"
+          class="w-full border p-3 mb-4 rounded"
+        />
+      </div>
+
+      <!-- <div class="">
+        <label for="fingerprintId">Fingerprint ID</label>
+        <input
+          type="text"
+          id="fingerprintId"
+          placeholder="Enter fingerprint ID e.g FP001"
         class="w-full border p-3 mb-4 rounded"
-      />
+      /> -->
 
-      <input
-        type="text"
-        id="matricNumber"
-        placeholder="Matric Number"
-        class="w-full border p-3 mb-4 rounded"
-      />
-
-      <input
-        type="text"
-        id="fingerprintId"
-        placeholder="Fingerprint ID e.g FP001"
-        class="w-full border p-3 mb-4 rounded"
-      />
-
-      <button class="bg-blue-600 text-white w-full p-3 rounded">
+      <button
+        class="bg-blue-600 text-white w-full p-3 rounded mt-4 hover:bg-blue-700 transition duration-200"
+      >
         Register Student
       </button>
     </form>

@@ -1,15 +1,14 @@
-// const express = require("express");
-// const { authorize } = require("../middlewares/authorize");
-// // const { protect } = require("../middlewares/protect");
-// const router = express.Router();
+const express = require("express");
 
-// const {
-//   registerStudent,
-//   getStudents,
-// } = require("../controllers/studentController");
+const studentRoutes = express.Router();
 
-// router.post("/", registerStudent);
+const {
+  registerStudent,
+  //   getStudents,
+} = require("../controllers/studentController");
+
+studentRoutes.post("/register", registerStudent);
 
 // router.get("/", authorize("admin"), getStudents);
 
-// module.exports = router;
+module.exports = studentRoutes;

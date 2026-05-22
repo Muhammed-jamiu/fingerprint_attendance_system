@@ -3,7 +3,7 @@ const Attendance = require("../models/Attendance");
 const User = require("../models/User");
 
 exports.markAttendance = async (req, res) => {
-  const { fingerprintId } = req.body;
+  // const { fingerprintId } = req.body;
 
   const student = await User.findOne({
     fingerprintId,
@@ -32,7 +32,7 @@ exports.markAttendance = async (req, res) => {
 
   await Attendance.create({
     student: student._id,
-    fingerprintId,
+    // fingerprintId,
   });
 
   res.json({

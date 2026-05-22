@@ -12,15 +12,11 @@ const placeholder = document.getElementById("placeholder");
 
 let capturedFingerprint = null;
 
-// ========================================
 // CAPTURE FINGERPRINT
-// ========================================
-
 captureBtn.addEventListener("click", async () => {
   // start scan animation
   alert("Place your thumb on the scanner");
   scanLine.classList.remove("hidden");
-
   placeholder.innerText = "Scanning Fingerprint...";
 
   // fake delay

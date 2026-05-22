@@ -9,11 +9,12 @@
   </head>
   <body class="bg-gray-100 flex justify-center items-center min-h-screen">
     <form id="loginForm" class="bg-white p-8 rounded-lg shadow-md w-96">
-      <h1 class="text-2xl font-bold mb-6 text-center text-red-500">
-        Admin Login
+      <h1 class="text-2xl font-bold mb-6 text-center text-blue-600">
+        Login to Your Account
       </h1>
+      <p id="errorBox" class="text-red-500 mt-4 text-center relative"></p>
       <div>
-        <label for="email">Email</label>
+        <label for="email">Email:</label>
         <input
           type="email"
           id="email"
@@ -23,7 +24,7 @@
       </div>
 
       <div>
-        <label for="password">Password</label>
+        <label for="password">Password:</label>
         <input
           type="password"
           id="password"
@@ -31,12 +32,34 @@
           class="w-full border p-3 mb-4 rounded"
         />
       </div>
-
+      <!-- <div class="mb-4">
+        <label class="block mb-1">Role:</label>
+        <select
+          id="role"
+          class="w-full border p-3 rounded"
+          required
+          outline-none
+        >
+          <option value="">Select role</option>
+          <option value="admin">Admin</option>
+          <option value="student">Student</option>
+        </select>
+      </div> -->
       <button
-        class="bg-blue-600 text-white w-full p-3 rounded hover:bg-blue-700"
+        class="bg-blue-600 text-white w-full p-3 rounded hover:bg-blue-700 transition duration-200"
+        type="submit"
       >
         Login
       </button>
+      <p class="text-center text-sm text-gray-600 mt-4">
+        Don't have an account?
+        <a
+          href="./signup.html"
+          class="text-blue-600 hover:underline text-sm font-bold"
+        >
+          Sign up
+        </a>
+      </p>
     </form>
 
     <script src="../js/login.js"></script>
