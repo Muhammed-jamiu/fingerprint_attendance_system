@@ -2,14 +2,18 @@ const mongoose = require("mongoose");
 
 const fingerprintSchema = new mongoose.Schema(
   {
-    thumb: String,
+    thumb: {
+      type: String,
+    },
 
     fingerprintId: {
       type: String,
       unique: true,
     },
 
-    image: String,
+    image: {
+      type: String,
+    },
   },
 
   {

@@ -4,11 +4,11 @@ const studentRoutes = express.Router();
 
 const {
   registerStudent,
-  //   getStudents,
+  getAllStudents,
 } = require("../controllers/studentController");
 
 studentRoutes.post("/register", registerStudent);
 
-// router.get("/", authorize("admin"), getStudents);
+studentRoutes.get("/", getAllStudents);
 
 module.exports = studentRoutes;

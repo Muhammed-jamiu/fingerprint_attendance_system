@@ -31,7 +31,7 @@ app.use("/public", express.static(path.join(__dirname, "public")));
 app.use("/api/auth", authRoutes);
 app.use("/api/attendance", attendanceRoutes);
 app.use("/api/fingerprint", fingerprintRoutes);
-app.use("/api/student", studentRoutes);
+app.use("/api/students", studentRoutes);
 
 const PORT = process.env.PORT || 5000;
 

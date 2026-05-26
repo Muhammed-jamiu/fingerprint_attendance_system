@@ -3,32 +3,48 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 //register Student Logic
+
 exports.registerStudent = async (req, res) => {
-  const { fullName, password, email } = req.body;
+  try {
+    const { fullname, email, password, courseTittle, courseCode } = req.body;
+    // CHECK EXISTING EMAIL
 
-  //hashing password
-  const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(password, salt);
+    const existingUser = await User.findOne({
+      email,
+    });
 
-  //register student/admin
-  const student = await User.create({
-    fullName,
-    password: hashedPassword,
-    email,
-  });
+    if (existingUser) {
+      return res.status(400).json({
+        message: "Email already exists",
+      });
+    }
 
-  res.status(201).json({
-    message: "Student Registered",
-    data: student,
-  });
+    // HASH PASSWORD
+
+    const salt = await bcrypt.genSalt(10);
+
+    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
+    // CREATE USER
+    const admin = await User.create({
+      fullname,
+      email,
+      password: hashedPassword,
+      courseTittle,
+      courseCode,
+    });
+
+    res.status(201).json({
+      message: "Registration successfully",
+
+      data: admin,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
 };
-
-// exports.getStudents = async (req, res) => {
-//   const students = await User.find({ matricNo });
-//   res.json({
-//     data: students,
-//   });
-// };
 
 //login Student Logic
 exports.login = async (req, res) => {
@@ -56,8 +72,6 @@ exports.login = async (req, res) => {
       expiresIn: process.env.JWT_EXPIRES_IN,
     },
   );
-
-  console.log(token);
 
   res.json({
     token,
