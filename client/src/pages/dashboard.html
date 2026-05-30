@@ -6,13 +6,10 @@
 
     <title>Dashboard</title>
     <link rel="stylesheet" href="../output.css" />
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
   </head>
-  <body class="bg-gray-100 h-screen">
+  <body class="bg-gray-100">
     <div class="flex">
-      <aside
-        class="w-66 bg-blue-700 h-screen md:flex lg:bg-green-500 lg:block text-white p-5"
-      >
+      <aside class="w-66 bg-blue-700 flex flex-col text-white p-5">
         <h1 class="text-2xl mb-10 font-bold">Attendance System</h1>
 
         <ul class="space-y-4 flex flex-col gap-4">
@@ -30,27 +27,92 @@
         </ul>
         <button
           id="logoutBtn"
-          class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mt-80 w-full hover:cursor-pointer lg:text-green-500"
+          class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mt-80 w-full hover:cursor-pointer lg:text-white"
           onclick="logout()"
         >
           Logout
         </button>
       </aside>
 
-      <main class="flex-1 p-10">
-        <h2 class="text-3xl font-bold mb-6">Dashboard</h2>
+      <main class="flex-1 p-10 overflow-y-auto">
+        <!-- TOP HEADER -->
+
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-3xl font-bold">Dashboard</h2>
+
+          <div class="font-bold flex flex-col">
+            <!-- lecturer section -->
+            <div class="flex gap-2">
+              <span class="text-sm">Lecturer:</span>
+
+              <h2 id="adminName" class="text-green-500 italic text-sm"></h2>
+            </div>
+            <!-- course title section -->
+            <div class="flex gap-2">
+              <span class="text-sm">Course Title:</span>
+              <h2 id="courseTitle" class="text-green-500 italic text-sm">
+                Introduction to Political Science
+              </h2>
+            </div>
+            <!-- course code section -->
+            <div class="flex gap-2">
+              <span class="text-sm">Course Code:</span>
+              <h2 id="courseCode" class="text-green-500 italic text-sm"></h2>
+            </div>
+          </div>
+        </div>
+
+        <!-- DASHBOARD CARDS -->
 
         <div class="grid grid-cols-2 gap-5">
-          <div class="bg-white p-6 rounded shadow">
-            <h3>Total Students</h3>
+          <!-- TOTAL STUDENTS -->
 
-            <p id="studentCount" class="text-4xl font-bold mt-4">0</p>
+          <div class="bg-white p-6 rounded shadow font-bold">
+            <h3 class="text-gray-600">Total Students</h3>
+
+            <p id="studentCount" class="text-4xl font-bold mt-4 text-blue-600">
+              0
+            </p>
           </div>
 
-          <div class="bg-white p-6 rounded shadow">
-            <h3>Total Attendance</h3>
+          <!-- TOTAL ATTENDANCE -->
 
-            <p id="attendanceCount" class="text-4xl font-bold mt-4">0</p>
+          <div class="bg-white p-6 rounded shadow font-bold">
+            <h3 class="text-gray-600">Total Attendance</h3>
+
+            <p
+              id="attendanceCount"
+              class="text-4xl font-bold mt-4 text-green-600"
+            ></p>
+          </div>
+        </div>
+
+        <!-- STUDENT LIST SECTION -->
+        <div class="bg-white mt-8 rounded shadow p-6">
+          <!-- SECTION TITLE -->
+          <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold">Student Attendance List</h2>
+            <span
+              class="bg-blue-100 text-blue-600 px-4 py-1 rounded-full text-sm font-bold"
+            >
+              Live Updates
+            </span>
+          </div>
+          <!-- TABLE HEADER -->
+          <div
+            class="flex justify-around bg-gray-100 p-2 rounded font-bold text-gray-700"
+          >
+            <p class="-ml-16">Student Name</p>
+            <p class="ml-10">Matric Number</p>
+            <p class="mr-10">Status</p>
+          </div>
+
+          <!-- STUDENT LIST -->
+          <div
+            id="studentList"
+            class="flex flex-col justify-between bg-gray-100 p-4 rounded font-bold text-gray-700 gap-4"
+          >
+            <!-- DYNAMIC CONTENT -->
           </div>
         </div>
       </main>

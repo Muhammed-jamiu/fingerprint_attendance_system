@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Signup</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../output.css" />
   </head>
 
   <body class="bg-gray-100 flex items-center justify-center min-h-screen">
@@ -15,23 +15,23 @@
 
       <!-- Full Name -->
       <div class="mb-4">
-        <label class="block mb-1">Full Name</label>
+        <label class="block mb-1">Lecturer Name</label>
         <input
           type="text"
           id="fullName"
-          class="w-full border p-3 rounded outline-none focus:ring-2 focus:ring-blue-600"
-          placeholder="Enter full name"
+          class="w-full border border-gray-400 p-3 rounded outline-none focus:ring-2 focus:ring-blue-600"
+          placeholder="Enter your full name"
           required
         />
       </div>
 
       <!-- Email -->
       <div class="mb-4">
-        <label class="block mb-1">Email</label>
+        <label class="block mb-1">Lecturer Email</label>
         <input
           type="email"
           id="email"
-          class="w-full border p-3 rounded outline-none focus:ring-2 focus:ring-blue-600"
+          class="w-full border p-3 rounded outline-none focus:ring-1 focus:ring-blue-600 border-gray-400"
           placeholder="Enter email"
           required
         />
@@ -43,31 +43,55 @@
         <input
           type="password"
           id="password"
-          class="w-full border p-3 rounded outline-none focus:ring-2 focus:ring-blue-600"
-          placeholder="Enter password"
+          class="w-full border p-3 rounded outline-none focus:ring-2 focus:ring-blue-600 border-gray-400"
+          placeholder="Create a new password "
           required
         />
       </div>
-
-      <!-- Role -->
-      <!-- <div class="mb-4">
-        <label class="block mb-1">Role</label>
-        <select id="role" class="w-full border p-3 rounded" required>
-          <option value="">Select role</option>
-          <option value="admin">Admin</option>
-          <option value="student">Student</option>
-        </select>
-      </div> -->
-
+      <!-- course information section -->
+      <p>Course Info.</p>
+      <hr class="text-gray-400 font-bold" />
+      <div>
+        <!-- course tittle -->
+        <div class="mb-4">
+          <label class="block mb-1">Course Tittle</label>
+          <input
+            type="text"
+            id="courseTitle"
+            class="w-full border p-3 rounded outline-none focus:ring-2 focus:ring-blue-600 border-gray-400"
+            placeholder="Enter course tittle "
+            required
+          />
+        </div>
+        <!-- course code -->
+        <div class="mb-4">
+          <label class="block mb-1">Course Code</label>
+          <input
+            type="text"
+            id="courseCode"
+            class="w-full border p-3 rounded outline-none focus:ring-2 focus:ring-blue-600 border-gray-400"
+            placeholder="Enter course code"
+            required
+          />
+        </div>
+      </div>
       <!-- Error Message -->
       <p id="errorBox" class="text-red-500 text-sm mb-3 text-center"></p>
 
       <!-- Submit -->
       <button
+        id="signupBtn"
         type="submit"
-        class="bg-blue-600 text-white w-full p-3 rounded hover:bg-blue-700"
+        class="bg-blue-600 text-white w-full p-3 rounded hover:bg-blue-700 hover:cursor-pointer flex items-center justify-center gap-2 transition"
       >
-        Sign Up
+        <span id="btnText">Sign Up</span>
+
+        <!-- Spinner -->
+
+        <div
+          id="spinner"
+          class="hidden w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"
+        ></div>
       </button>
       <p>
         <a href="./login.html" class="text-sm block mt-4 text-center"
@@ -76,7 +100,50 @@
         >
       </p>
     </form>
+    <!-- SUCCESS MODAL -->
 
+    <div
+      id="successModal"
+      class="fixed inset-0 bg-green-500/50 hidden items-center justify-center z-50"
+    >
+      <div
+        class="bg-white w-80 rounded-lg shadow-lg p-6 text-center animate-bounce"
+      >
+        <!-- SUCCESS ICON -->
+        <div
+          class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"
+        >
+          <svg
+            class="w-8 h-8 text-green-600"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+        </div>
+
+        <!-- MESSAGE -->
+
+        <h2 class="text-2xl font-bold text-green-800 mb-2">Success!</h2>
+
+        <p class="text-gray-600 mb-6">Account created successfully</p>
+
+        <!-- BUTTON -->
+
+        <button
+          id="continueBtn"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg w-full hover:cursor-pointer transition"
+        >
+          Continue
+        </button>
+      </div>
+    </div>
     <script src="../js/signup.js"></script>
   </body>
 </html>

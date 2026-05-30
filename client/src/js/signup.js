@@ -5,10 +5,12 @@ form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   errorBox.textContent = "";
-
-  const fullName = document.getElementById("fullName").value;
+  //form input section
+  const fullname = document.getElementById("fullName").value;
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
+  const courseTitle = document.getElementById("courseTitle").value;
+  const courseCode = document.getElementById("courseCode").value;
 
   try {
     const response = await fetch("http://localhost:5000/api/auth/register", {
@@ -17,13 +19,17 @@ form.addEventListener("submit", async (e) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        fullName,
+        fullname,
         email,
         password,
+        courseTitle,
+        courseCode,
       }),
     });
 
     const data = await response.json();
+    // console.log(data.data.student.fullname);
+    console.log(data);
 
     if (!response.ok) {
       errorBox.textContent = data.message || "Signup failed";
@@ -35,6 +41,6 @@ form.addEventListener("submit", async (e) => {
     // redirect to login page
     window.location.href = "./login.html";
   } catch (err) {
-    errorBox.textContent = `Email already exist`;
+    errorBox.textContent = `Something went wrong`;
   }
 });

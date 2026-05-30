@@ -1,23 +1,38 @@
-const form = document.getElementById("attendanceForm");
+const attendanceForm = document.querySelector("#attendanceForm");
+const errorMessage = document.querySelector("#message");
 
-form.addEventListener("submit", async (e) => {
+//
+attendanceForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const fingerprintId = document.getElementById("fingerprintId").value;
+  const matricNo = document.querySelector("#matricNo").value;
 
-  const response = await fetch("http://localhost:5000/api/attendance/mark", {
-    method: "POST",
+  try {
+    const response = await fetch(
+      "http://localhost:5000/api/attendance/verify",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          matricNo,
+        }),
+      },
+    );
 
-    headers: {
-      "Content-Type": "application/json",
-    },
+    const data = await response.json();
+    console.log(data);
 
-    body: JSON.stringify({
-      fingerprintId,
-    }),
-  });
-
-  const data = await response.json();
-
-  alert(data.message);
+    if (!response.ok) {
+      return (errorMessage.innerHTML = data.message);
+    }
+    localStorage.setItem("matricNo", matricNo);
+    // redirect to fingerprint page
+    window.location.href = "fingerprint.html";
+  } catch (error) {
+    console.log(error.message);
+    //DISPLAYING THE ERROR TO THE USER
+    errorMessage.innerHTML = error.message;
+  }
 });

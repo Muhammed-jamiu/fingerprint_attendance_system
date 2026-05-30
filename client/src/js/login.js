@@ -1,6 +1,5 @@
 const form = document.getElementById("loginForm");
 const errorBox = document.getElementById("errorBox");
-// const role = document.getElementById("role").value;
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -20,6 +19,12 @@ form.addEventListener("submit", async (e) => {
     });
 
     const data = await response.json();
+    console.log(data.data.fullname);
+
+    //saving admin name, courseTittle and courseCode to the localstorage
+    localStorage.setItem("adminName", data.data.fullname);
+    localStorage.setItem("courseCode", data.data.courseCode);
+    localStorage.setItem("courseTitle", data.data.courseTitle);
 
     // IMPORTANT: handle backend errors properly
     if (!response.ok) {
