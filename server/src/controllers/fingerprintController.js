@@ -1,10 +1,9 @@
 const Fingerprint = require("../models/Fingerprint");
+const Student = require("../models/Student");
 
 // CAPTURE FINGERPRINT
 exports.captureFingerprint = async (req, res) => {
   try {
-    // const { thumb,  } = req.body;
-    // fake generated fingerprint ID
     const fingerprintId = "FP" + Math.floor(100000 + Math.random() * 900000);
     // fake fingerprint images
     const images = [
@@ -29,22 +28,26 @@ exports.captureFingerprint = async (req, res) => {
 // SAVE FINGERPRINT
 exports.saveFingerprint = async (req, res) => {
   try {
-    const { thumb, fingerprintId, image } = req.body;
+    const { matricNo, thumb, fingerprintId, image } = req.body;
 
-    // prevent duplicate
-    const exists = await Fingerprint.findOne({
-      fingerprintId,
-    });
-    if (exists) {
-      res.status(400);
-      throw new Error("Fingerprint already exists");
+    //find student
+    const student = await Student.findOne({ matricNo });
+
+    if (!student) {
+      return res.status(404).json({ message: "Student not found" });
     }
+
     // save fingerprint data to database
     const fingerprint = await Fingerprint.create({
       thumb,
       fingerprintId,
       image,
     });
+
+    //update student
+    student.attendanceStatus = "present";
+
+    await student.save();
 
     res.status(201).json({
       success: true,

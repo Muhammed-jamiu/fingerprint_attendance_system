@@ -10,28 +10,36 @@ exports.registerStudent = async (req, res) => {
       throw new Error("Student already registered");
     }
 
+    if (fullname === "" && matricNo === "") {
+      return res
+        .status(400)
+        .json({ message: "Please fill all the field required" });
+    }
+
     if (fullname.length < 4) {
       return res.status(400).json({ message: "Name is too short" });
     }
+    if (matricNo.length < 13) {
+      return res
+        .status(400)
+        .json({ message: "Matric number must be 13 character long" });
+    }
 
-    //IsmatchMatric number
-    const isMatchMatricNum = () => {
-      const matchMatricNo = ["FPN2026"];
-      if (matchMatricNo.includes(matricNo)) {
-        return res
-          .status(400)
-          .json({ message: "Invalid Matric number entered" });
-      }
-    };
+    // CHECK MATRIC PREFIX
+    const isMatchMatricNo = matricNo.startsWith("FPN2026");
+    if (!isMatchMatricNo) {
+      return res.status(400).json({
+        message: "Matric number format must be like FPN2026CS0001",
+      });
+    }
 
     //creating/registering new student
     const student = await Student.create({
       fullname,
-      matricNo: isMatchMatricNum(),
+      matricNo,
     });
 
-    // await student.save();
-    res
+    return res
       .status(200)
       .json({ message: "Student registered sucessfully", data: student });
   } catch (error) {

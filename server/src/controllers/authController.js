@@ -3,12 +3,10 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 //register Student Logic
-
 exports.registerStudent = async (req, res) => {
   try {
-    const { fullname, email, password, courseTittle, courseCode } = req.body;
+    const { fullname, email, password, courseTitle, courseCode } = req.body;
     // CHECK EXISTING EMAIL
-
     const existingUser = await User.findOne({
       email,
     });
@@ -20,7 +18,6 @@ exports.registerStudent = async (req, res) => {
     }
 
     // HASH PASSWORD
-
     const salt = await bcrypt.genSalt(10);
 
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
@@ -30,7 +27,7 @@ exports.registerStudent = async (req, res) => {
       fullname,
       email,
       password: hashedPassword,
-      courseTittle,
+      courseTitle,
       courseCode,
     });
 

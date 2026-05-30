@@ -1,59 +1,37 @@
-const Attendance = require("../models/Attendance");
+const Student = require("../models/Student");
 
-const User = require("../models/User");
+//
+exports.verifyStudent = async (req, res) => {
+  try {
+    const { matricNo } = req.body;
 
-exports.markAttendance = async (req, res) => {
-  const { fingerprintId } = req.body;
+    if (matricNo === "" || matricNo < 13) {
+      return res.status(400).json({ message: "Fill the field required" });
+    }
 
-  const student = await User.findOne({
-    fingerprintId,
-  });
+    //
+    const isMatchMatricNo = matricNo.startsWith("FPN2026");
+    if (!isMatchMatricNo) {
+      return res.status(400).json({
+        message: "Matric number format must be like FPN2026CS0001",
+      });
+    }
 
-  if (!student) {
-    // return res.status(404).json({
-    //   message: "Fingerprint not found",
-    // });
-    res.status(404);
-    throw new Error("Fingerprint not found");
+    const isStudentExist = await Student.findOne({ matricNo });
+
+    if (!isStudentExist) {
+      return res.status(400).json({ message: "Student not found" });
+    }
+
+    if (isStudentExist) {
+      isStudentExist.attendanceStatus = "present";
+    }
+
+    isStudentExist.save();
+    res
+      .status(201)
+      .json({ message: "update Sucessfully", data: isStudentExist });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
-
-  const alreadyMarked = await Attendance.findOne({
-    student: student._id,
-
-    createdAt: {
-      $gte: new Date().setHours(0, 0, 0, 0),
-    },
-  });
-
-  if (alreadyMarked) {
-    res.status(400);
-    throw new Error("Attendance already marked today");
-  }
-
-  await Attendance.create({
-    student: student._id,
-    // fingerprintId,
-  });
-
-  res.json({
-    message: "Attendance marked successfully",
-  });
-};
-
-exports.getStats = async (req, res) => {
-  const students = await User.countDocuments({
-    role: "student",
-  });
-
-  if (students <= 0) {
-    res.status(404);
-    throw new Error("No students found");
-  }
-
-  const attendance = await Attendance.countDocuments();
-
-  res.json({
-    students,
-    attendance,
-  });
 };

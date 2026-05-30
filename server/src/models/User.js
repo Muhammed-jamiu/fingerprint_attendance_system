@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema(
       required: true,
       minlength: 6,
     },
-    courseTittle: {
+    courseTitle: {
       type: String,
       required: true,
       minlength: 6,

@@ -1,14 +1,7 @@
 const express = require("express");
+const { verifyStudent } = require("../controllers/attendanceController");
+const attendanceRoutes = express.Router();
 
-const router = express.Router();
+attendanceRoutes.post("/verify", verifyStudent);
 
-const {
-  markAttendance,
-  getStats,
-} = require("../controllers/attendanceController");
-
-router.post("/mark", markAttendance);
-
-router.get("/stats", getStats);
-
-module.exports = router;
+module.exports = attendanceRoutes;

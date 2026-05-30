@@ -9,10 +9,9 @@ const connectDB = require("../server/src/config/db");
 //loading route modules
 const authRoutes = require("../server/src/routes/authRoutes");
 const studentRoutes = require("../server/src/routes/studentRoutes");
-const attendanceRoutes = require("../server/src/routes/attendanceRoutes");
 const fingerprintRoutes = require("../server/src/routes/fingerprintRoutes");
 const errorHandler = require("../server/src/middlewares/errorMiddleware");
-
+const attendanceRoutes = require("../server/src/routes/attendanceRoutes");
 //middleware section
 const app = express();
 
@@ -29,9 +28,10 @@ app.use("/public", express.static(path.join(__dirname, "public")));
 
 //loading routes section
 app.use("/api/auth", authRoutes);
-app.use("/api/attendance", attendanceRoutes);
+
 app.use("/api/fingerprint", fingerprintRoutes);
 app.use("/api/students", studentRoutes);
+app.use("/api/attendance", attendanceRoutes);
 
 const PORT = process.env.PORT || 5000;
 
