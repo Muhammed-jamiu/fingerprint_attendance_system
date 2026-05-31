@@ -4,7 +4,7 @@ const saveBtn = document.getElementById("saveBtn");
 
 const fingerprintImage = document.getElementById("fingerprintImage");
 
-const fingerprintIdInput = document.getElementById("fingerprintId");
+// const fingerprintIdInput = document.getElementById("fingerprintId");
 
 const scanLine = document.getElementById("scanLine");
 
@@ -41,11 +41,11 @@ captureBtn.addEventListener("click", async () => {
       placeholder.classList.add("hidden");
 
       // display generated ID
-      fingerprintIdInput.value = data.fingerprintId;
+      // fingerprintIdInput.value = data.fingerprintId;
 
-      if (fingerprintIdInput.value) {
-        console.log("Student already mark attandance");
-      }
+      // if (fingerprintIdInput.value) {
+      //   console.log("Student already mark attandance");
+      // }
       // store
       capturedFingerprint = data;
     } catch (error) {
@@ -75,7 +75,7 @@ saveBtn.addEventListener("click", async () => {
 
       body: JSON.stringify({
         thumb: selectedThumb,
-        fingerprintId: capturedFingerprint.fingerprintId,
+        // fingerprintId: capturedFingerprint.fingerprintId,
         image: capturedFingerprint.image,
         matricNo,
       }),
@@ -87,7 +87,8 @@ saveBtn.addEventListener("click", async () => {
     setTimeout(() => {
       window.location.href = "./dashboard.html";
     }, 2000);
-    alert(data.message);
+    // alert(data.message);
+    localStorage.setItem("message", data.message);
   } catch (error) {
     console.log(error.message);
 

@@ -120,6 +120,51 @@ async function loadDashboardStats() {
   courseTitle.innerText = storeCourseTitle;
 }
 
-// INITIAL LOAD
+// datasection
+const currentDateTime = document.getElementById("currentDateTime");
 
+function updateDateTime() {
+  const now = new Date();
+
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  // const currentDay = ["Mon", "Tue", "Wes", "Thur", "Fir", "Sat", "Sun"];
+
+  const monthName = months[now.getMonth()];
+  // const dayName = currentDay[now.getDay()];
+
+  const day = String(now.getDate()).padStart(2, "0");
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const year = now.getFullYear();
+
+  let hours = now.getHours();
+  const minutes = String(now.getMinutes()).padStart(2, "0");
+  const second = String(now.getSeconds()).padStart(2, "0");
+
+  const ampm = hours >= 12 ? "PM" : "AM";
+
+  hours = hours % 12 || 12;
+
+  currentDateTime.innerText = ` ${monthName}, ${day}-${month}-${year}: ${hours}:${minutes}: ${second} ${ampm}`;
+}
+
+// Run immediately
+updateDateTime();
+
+// Update every second
+setInterval(updateDateTime, 1000);
+// INITIAL LOAD
 loadDashboardStats();

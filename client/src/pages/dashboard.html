@@ -37,31 +37,38 @@
       <main class="flex-1 p-10 overflow-y-auto">
         <!-- TOP HEADER -->
 
-        <div class="flex justify-between items-center mb-6">
+        <div class="flex justify-between items-center mb-2">
           <h2 class="text-3xl font-bold">Dashboard</h2>
 
-          <div class="font-bold flex flex-col">
+          <div
+            class="font-bold flex flex-col border-2 border-green-500 p-2 rounded bg-white"
+          >
             <!-- lecturer section -->
             <div class="flex gap-2">
-              <span class="text-sm">Lecturer:</span>
+              <span class="text-sm text-green-500">Lecturer:</span>
 
-              <h2 id="adminName" class="text-green-500 italic text-sm"></h2>
+              <h2 id="adminName" class="text-blue-600 italic text-sm"></h2>
             </div>
             <!-- course title section -->
             <div class="flex gap-2">
-              <span class="text-sm">Course Title:</span>
-              <h2 id="courseTitle" class="text-green-500 italic text-sm">
+              <span class="text-sm text-green-500">Course Title:</span>
+              <h2 id="courseTitle" class="text-blue-600 italic text-sm">
                 Introduction to Political Science
               </h2>
             </div>
             <!-- course code section -->
             <div class="flex gap-2">
-              <span class="text-sm">Course Code:</span>
-              <h2 id="courseCode" class="text-green-500 italic text-sm"></h2>
+              <span class="text-sm text-green-500">Course Code:</span>
+              <h2 id="courseCode" class="text-blue-600 italic text-sm"></h2>
             </div>
           </div>
         </div>
-
+        <!-- date section -->
+        <div class="flex justify-end mb-2">
+          <p id="currentDateTime" class="font-bold italic text-blue-600">
+            Date:
+          </p>
+        </div>
         <!-- DASHBOARD CARDS -->
 
         <div class="grid grid-cols-2 gap-5">

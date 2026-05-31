@@ -5,10 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
     <link rel="stylesheet" href="../output.css" />
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <style>
+      #logo {
+        text-align: center;
+        width: 100px;
+        height: 100px;
+        border: 2px solid green;
+        border-radius: 100%;
+        display: flex;
+        background-image: url("../../public/fingerprint_1.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    </style>
   </head>
   <body class="bg-gray-100 flex justify-center items-center min-h-screen">
     <form id="loginForm" class="bg-white p-8 rounded-lg shadow-md w-96">
+      <div class="flex justify-center mb-4">
+        <div id="logo"></div>
+      </div>
       <h1 class="text-2xl font-bold mb-6 text-center text-blue-600">
         Login to Your Account
       </h1>
