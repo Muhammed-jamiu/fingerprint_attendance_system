@@ -120,7 +120,7 @@ async function loadDashboardStats() {
   courseTitle.innerText = storeCourseTitle;
 }
 
-// datasection
+// date section
 const currentDateTime = document.getElementById("currentDateTime");
 
 function updateDateTime() {

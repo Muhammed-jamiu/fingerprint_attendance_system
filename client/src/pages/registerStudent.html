@@ -6,14 +6,30 @@
 
     <title>Register Student</title>
     <link rel="stylesheet" href="../output.css" />
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link rel="icon" type="image/jpeg" href="../../public/logo_2.jpg" />
+    <style>
+      #logo {
+        text-align: center;
+        width: 100px;
+        height: 100px;
+        display: flex;
+        background-image: url("../../public/logo_2.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    </style>
   </head>
   <body class="bg-gray-100 p-10">
     <form
       id="studentForm"
       class="bg-white p-8 rounded-2xl shadow max-w-lg mx-auto"
     >
-      <h1 class="text-2xl font-bold mb-6">Register Student</h1>
+      <!-- School Logo Section-->
+      <div class="flex justify-center mb-4">
+        <div id="logo"></div>
+      </div>
+      <h1 class="text-2xl text-center font-bold mb-4">Register Student</h1>
       <p class="text-red-500 text-center italic p-2" id="message"></p>
       <div class="">
         <label for="fullName">Full Name</label>

@@ -7,21 +7,42 @@
 
     <title>Attendance</title>
     <link rel="stylesheet" href="../output.css" />
+    <link rel="icon" type="image/jpeg" href="../../public/logo_2.jpg" />
+    <style>
+      #logo {
+        text-align: center;
+        width: 100px;
+        height: 100px;
+        display: flex;
+        background-image: url("../../public/logo_2.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      #message {
+        height: 36px;
+        position: relative;
+      }
+    </style>
   </head>
 
   <body class="bg-gray-100 flex justify-center items-center min-h-screen">
-    <form id="attendanceForm" class="bg-white p-8 rounded shadow w-96">
-      <h1 class="text-2xl font-bold mb-6 text-center">Confirm Matric Number</h1>
-      <div class="p-2 text-center mb-4">
+    <form id="attendanceForm" class="bg-white p-8 rounded-2xl shadow w-96">
+      <!-- School Logo Section-->
+      <div class="flex justify-center mb-2">
+        <div id="logo"></div>
+      </div>
+      <h1 class="text-2xl font-bold mb-2 text-center">Confirm Matric Number</h1>
+      <div class="text-center mb-2">
         <div id="message" class="italic font-bold text-red-500"></div>
       </div>
-      <div>
+      <div class="mt-4">
         <label for="matricno" class="font-bold">Matric Number</label>
         <input
           type="text"
           id="matricNo"
           placeholder="Enter your Matric number"
-          class="w-full border p-3 mb-4 mt-2 font-bold italic rounded"
+          class="w-full border p-3 mb-6 mt-2 font-bold italic rounded"
         />
       </div>
 

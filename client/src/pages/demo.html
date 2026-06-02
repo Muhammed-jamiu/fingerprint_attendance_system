@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Attendance</title>
+    <link rel="stylesheet" href="../output.css" />
+    <link rel="icon" type="image/jpeg" href="../../public/logo_2.jpg" />
+    <style>
+      #logo {
+        text-align: center;
+        width: 90px;
+        height: 90px;
+        display: flex;
+        background-image: url("../../public/logo_2.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      #email {
+        text-align: center;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        background-image: url("../../public/email.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      #whatsapp {
+        text-align: center;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        background-image: url("../../public/whatsapp.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    </style>
+  </head>
+
+  <body class="bg-gray-100 flex justify-center items-center min-h-screen">
+    <form id="attendanceForm" class="bg-white p-8 rounded-2xl shadow w-96">
+      <!-- School Logo Section-->
+      <div class="flex justify-center mb-2">
+        <div id="logo"></div>
+      </div>
+      <h1 class="text-lg font-bold mt-2 text-center text-blue-600">
+        FINAL YEAR PROJECT FOR COMPUTER SCIENCE STUDENT
+      </h1>
+      <h4 class="text-center mt-4 font-bold text-lg text-blue-600">TITLED:</h4>
+      <h1
+        class="text-lg font-bold mt-2 text-center text-green-600 italic underline"
+      >
+        FINGPRINT ATTENDANCE SYSTEM SOFTWARE
+      </h1>
+      <h1 class="text-lg font-bold mt-4 text-center text-blue-600">
+        FEDERAL POLYTECHNIC NASSARAWA
+      </h1>
+
+      <button
+        class="bg-green-500 text-white w-full p-3 rounded hover:cursor-pointer font-bold mt-4"
+      >
+        Project Completed ✅
+      </button>
+      <div class="text-center mt-2">
+        <span class="text-center text-green-500 font-bold"
+          >Build By:
+          <span class="text-blue-600 italic">Muhammed Jamiu(Jamoskedev)</span>
+        </span>
+        <p class="italic font-bold">2026</p>
+      </div>
+      <article class="italic font-bold text-green-500">Contact Info:</article>
+
+      <section class="border-2 border-green-600 p-2 rounded-2xl bac">
+        <div class="flex items-center gap-2">
+          <div id="email"></div>
+          :
+          <div class="underline text-blue-600 italic">
+            jamoskeydev@gmail.com
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <div id="whatsapp"></div>
+          :
+          <div class="text-blue-600 italic">07013862792 or 07070691861</div>
+        </div>
+      </section>
+      <small class="text-center flex justify-center mt-2 font-bold italic"
+        >DM FOR YOUR FINAL YEAR PORJECTS, AND OTHER SOFTWARE DEVELOPMENT
+        SERVICES.</small
+      >
+      <p class="text-center font-bold italic text-sm text-green-500">
+        THANK YOU!
+      </p>
+    </form>
+
+    <script src="../js/attendance.js"></script>
+  </body>
+</html>
