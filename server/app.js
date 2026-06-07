@@ -20,9 +20,13 @@ app.use(express.json());
 app.use(errorHandler);
 app.use(
   cors({
-    origin: "http://127.0.0.1:5500",
+    origin: true,
     credentials: true,
   }),
+  // cors({
+  //   origin: "http://127.0.0.1:5500",
+  //   credentials: true,
+  // }),
 );
 app.use("/public", express.static(path.join(__dirname, "public")));
 
@@ -35,7 +39,8 @@ app.use("/api/attendance", attendanceRoutes);
 
 const PORT = process.env.PORT || 5000;
 
+//database connection and server start
+connectDB();
 app.listen(PORT, () => {
   console.log(`Server running on ${PORT}`);
-  connectDB();
 });
