@@ -13,21 +13,20 @@ form.addEventListener(
     const matricNo = document.getElementById("matricNumber").value;
 
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/students/register",
-        {
-          method: "POST",
+      const API_URL =
+        "https://fingerprint-attendance-system-qalw.onrender.com/api";
+      const response = await fetch(`${API_URL}/students/register`, {
+        method: "POST",
 
-          headers: {
-            "Content-Type": "application/json",
-          },
-
-          body: JSON.stringify({
-            fullname,
-            matricNo,
-          }),
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+
+        body: JSON.stringify({
+          fullname,
+          matricNo,
+        }),
+      });
 
       const data = await response.json();
 

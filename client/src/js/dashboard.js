@@ -20,7 +20,9 @@ function logout() {
 // LOAD DASHBOARD DATA
 async function loadDashboardStats() {
   try {
-    const response = await fetch("http://localhost:5000/api/students");
+    const API_URL =
+      "https://fingerprint-attendance-system-qalw.onrender.com/api";
+    const response = await fetch(`${API_URL}/students`);
 
     const data = await response.json();
 

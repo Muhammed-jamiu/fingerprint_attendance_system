@@ -23,12 +23,11 @@ captureBtn.addEventListener("click", async () => {
 
   setTimeout(async () => {
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/fingerprint/capture",
-        {
-          method: "POST",
-        },
-      );
+      const API_URL =
+        "https://fingerprint-attendance-system-qalw.onrender.com/api";
+      const response = await fetch(`${API_URL}/fingerprint/capture`, {
+        method: "POST",
+      });
 
       const data = await response.json();
 
@@ -66,7 +65,9 @@ saveBtn.addEventListener("click", async () => {
   ).value;
   const matricNo = localStorage.getItem("MatricNo");
   try {
-    const response = await fetch("http://localhost:5000/api/fingerprint/save", {
+    const API_URL =
+      "https://fingerprint-attendance-system-qalw.onrender.com/api";
+    const response = await fetch(`${API_URL}/fingerprint/save`, {
       method: "POST",
 
       headers: {

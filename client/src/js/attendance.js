@@ -8,18 +8,19 @@ attendanceForm.addEventListener("submit", async (e) => {
   const matricNo = document.querySelector("#matricNo").value;
 
   try {
-    const response = await fetch(
-      "http://localhost:5000/api/attendance/verify",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          matricNo,
-        }),
+    // api url section
+    const API_URL =
+      "https://fingerprint-attendance-system-qalw.onrender.com/api";
+
+    const response = await fetch(`${API_URL}/attendance/verify`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-    );
+      body: JSON.stringify({
+        matricNo,
+      }),
+    });
 
     const data = await response.json();
     console.log(data);
