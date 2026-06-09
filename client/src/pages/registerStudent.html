@@ -18,6 +18,21 @@
         background-repeat: no-repeat;
         background-size: cover;
       }
+
+      .spinner {
+        width: 18px;
+        height: 18px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-top: 3px solid #ffffff;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
     </style>
   </head>
   <body class="bg-gray-100 p-10">
@@ -50,12 +65,11 @@
           class="w-full border p-3 mb-4 rounded placeholder:italic"
         />
       </div>
-
       <button
-        class="bg-blue-600 text-white w-full p-3 rounded mt-4 hover:bg-blue-700 transition duration-200 hover:cursor-pointer"
         id="regbtn"
+        class="bg-blue-600 text-white w-full p-3 rounded mt-4 hover:bg-blue-700 transition duration-200 hover:cursor-pointer flex items-center justify-center gap-2 disabled:bg-gray-400 disabled:cursor-not-allowed disabled:opacity-80"
       >
-        Register Student
+        <span id="btnText">Register Student</span>
       </button>
     </form>
 

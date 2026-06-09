@@ -17,6 +17,20 @@
         background-repeat: no-repeat;
         background-size: cover;
       }
+      .spinner {
+        width: 18px;
+        height: 18px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-top: 3px solid #ffffff;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
     </style>
   </head>
   <body class="bg-gray-100 flex justify-center items-center min-h-screen">
@@ -50,10 +64,11 @@
       </div>
 
       <button
-        class="bg-blue-600 text-white w-full p-3 rounded hover:bg-blue-700 transition duration-200 hover:cursor-pointer"
+        id="loginBtn"
+        class="bg-blue-600 text-white w-full p-3 rounded hover:bg-blue-700 transition duration-200 hover:cursor-pointer flex items-center justify-center gap-2 disabled:bg-gray-400 disabled:cursor-not-allowed disabled:opacity-80"
         type="submit"
       >
-        Login
+        <span id="btnText">Login</span>
       </button>
       <p class="text-center text-sm text-gray-600 mt-4">
         Don't have an account?

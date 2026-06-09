@@ -39,12 +39,6 @@ captureBtn.addEventListener("click", async () => {
       fingerprintImage.classList.remove("hidden");
       placeholder.classList.add("hidden");
 
-      // display generated ID
-      // fingerprintIdInput.value = data.fingerprintId;
-
-      // if (fingerprintIdInput.value) {
-      //   console.log("Student already mark attandance");
-      // }
       // store
       capturedFingerprint = data;
     } catch (error) {
@@ -60,13 +54,25 @@ saveBtn.addEventListener("click", async () => {
   if (!capturedFingerprint) {
     return alert("Capture fingerprint first");
   }
+
   const selectedThumb = document.querySelector(
     'input[name="thumb"]:checked',
   ).value;
-  const matricNo = localStorage.getItem("MatricNo");
+
+  const matricNo = localStorage.getItem("matricNo");
+
   try {
+    // Disable button and show loading state
+    saveBtn.disabled = true;
+
+    saveBtn.innerHTML = `
+      <div class="spinner"></div>
+      <span>Saving...</span>
+    `;
+
     const API_URL =
       "https://fingerprint-attendance-system-qalw.onrender.com/api";
+
     const response = await fetch(`${API_URL}/fingerprint/save`, {
       method: "POST",
 
@@ -76,7 +82,6 @@ saveBtn.addEventListener("click", async () => {
 
       body: JSON.stringify({
         thumb: selectedThumb,
-        // fingerprintId: capturedFingerprint.fingerprintId,
         image: capturedFingerprint.image,
         matricNo,
       }),
@@ -84,15 +89,25 @@ saveBtn.addEventListener("click", async () => {
 
     const data = await response.json();
 
-    //redirect to dashboard
+    if (!response.ok) {
+      throw new Error(data.message || "Failed to save fingerprint");
+    }
+
+    localStorage.setItem("message", data.message);
+
     setTimeout(() => {
       window.location.href = "./dashboard.html";
     }, 2000);
-    // alert(data.message);
-    localStorage.setItem("message", data.message);
   } catch (error) {
     console.log(error.message);
 
-    // console.log("Student already mark attendance");
+    alert(error.message);
+
+    // Re-enable button if save fails
+    saveBtn.disabled = false;
+
+    saveBtn.innerHTML = `
+      <span id="saveBtnText">Save Fingerprint</span>
+    `;
   }
 });
