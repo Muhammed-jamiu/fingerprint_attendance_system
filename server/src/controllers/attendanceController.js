@@ -5,33 +5,42 @@ exports.verifyStudent = async (req, res) => {
   try {
     const { matricNo } = req.body;
 
-    if (matricNo === "" || matricNo < 13) {
-      return res.status(400).json({ message: "Fill the field required" });
+    if (!matricNo || matricNo.length < 13) {
+      return res.status(400).json({
+        message: "Fill the field required",
+      });
     }
 
-    //
     const isMatchMatricNo = matricNo.startsWith("FPN2026");
+
     if (!isMatchMatricNo) {
       return res.status(400).json({
         message: "Matric number format must be like FPN2026CS0001",
       });
     }
 
-    const isStudentExist = await Student.findOne({ matricNo });
+    const student = await Student.findOne({ matricNo });
 
-    if (!isStudentExist) {
-      return res.status(400).json({ message: "Student not found" });
+    if (!student) {
+      return res.status(404).json({
+        message: "Student not found",
+      });
     }
 
-    if (isStudentExist) {
-      isStudentExist.attendanceStatus = "present";
+    // NEW VALIDATION
+    if (student.attendanceStatus === "present") {
+      return res.status(400).json({
+        message: "Student already marked attendance",
+      });
     }
 
-    isStudentExist.save();
-    res
-      .status(201)
-      .json({ message: "update Sucessfully", data: isStudentExist });
+    res.status(200).json({
+      message: "Student verified successfully",
+      data: student,
+    });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({
+      message: error.message,
+    });
   }
 };
