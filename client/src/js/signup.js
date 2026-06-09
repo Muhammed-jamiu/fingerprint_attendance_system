@@ -20,7 +20,7 @@ form.addEventListener("submit", async (e) => {
 
     signupBtn.innerHTML = `
       <div class="spinner"></div>
-      <span>Processing...</span>
+      <span>Signing up...</span>
     `;
 
     const API_URL =
