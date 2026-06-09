@@ -6,18 +6,33 @@
     <title>Signup</title>
     <link rel="icon" type="image/jpeg" href="../../public/logo_2.jpg" />
     <link rel="stylesheet" href="../output.css" />
-    <style>
-      #logo {
-        text-align: center;
-        width: 100px;
-        height: 100px;
-        display: flex;
-        background-image: url("../../public/logo_2.jpg");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
-    </style>
+  <style>
+  #logo {
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    background-image: url("../../public/logo_2.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .spinner {
+    width: 18px;
+    height: 18px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid #ffffff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
   </head>
 
   <body class="bg-gray-100 flex items-center justify-center min-h-screen">
@@ -96,20 +111,13 @@
       <p id="errorBox" class="text-red-500 text-sm mb-3 text-center"></p>
 
       <!-- Submit -->
-      <button
-        id="signupBtn"
-        type="submit"
-        class="bg-blue-600 text-white w-full p-3 rounded hover:bg-blue-700 hover:cursor-pointer flex items-center justify-center gap-2 transition"
-      >
-        <span id="btnText">Sign Up</span>
-
-        <!-- Spinner -->
-
-        <div
-          id="spinner"
-          class="hidden w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"
-        ></div>
-      </button>
+     <button
+  id="signupBtn"
+  type="submit"
+  class="bg-blue-600 text-white w-full p-3 rounded hover:bg-blue-700 hover:cursor-pointer flex items-center justify-center gap-2 transition disabled:bg-gray-400 disabled:cursor-not-allowed disabled:opacity-80"
+>
+  <span id="btnText">Sign Up</span>
+</button>
       <p>
         <a href="./login.html" class="text-sm block mt-4 text-center"
           >Already have an account?
@@ -117,7 +125,6 @@
         >
       </p>
     </form>
-    <!-- SUCCESS MODAL -->
 
     <div
       id="successModal"
@@ -126,41 +133,6 @@
       <div
         class="bg-white w-80 rounded-lg shadow-lg p-6 text-center animate-bounce"
       >
-        <!-- SUCCESS ICON -->
-        <div
-          class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"
-        >
-          <svg
-            class="w-8 h-8 text-green-600"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="3"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
-        </div>
-
-        <!-- MESSAGE -->
-
-        <h2 class="text-2xl font-bold text-green-800 mb-2">Success!</h2>
-
-        <p class="text-gray-600 mb-6">Account created successfully</p>
-
-        <!-- BUTTON -->
-
-        <button
-          id="continueBtn"
-          class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg w-full hover:cursor-pointer transition"
-        >
-          Continue
-        </button>
-      </div>
-    </div>
     <script src="../js/signup.js"></script>
   </body>
 </html>

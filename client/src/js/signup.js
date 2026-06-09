@@ -1,11 +1,13 @@
 const form = document.getElementById("signupForm");
 const errorBox = document.getElementById("errorBox");
+const signupBtn = document.getElementById("signupBtn");
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   errorBox.textContent = "";
-  //form input section
+
+  // Form inputs
   const fullname = document.getElementById("fullName").value;
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
@@ -13,8 +15,17 @@ form.addEventListener("submit", async (e) => {
   const courseCode = document.getElementById("courseCode").value;
 
   try {
+    // Disable button and show loader
+    signupBtn.disabled = true;
+
+    signupBtn.innerHTML = `
+      <div class="spinner"></div>
+      <span>Processing...</span>
+    `;
+
     const API_URL =
       "https://fingerprint-attendance-system-qalw.onrender.com/api";
+
     const response = await fetch(`${API_URL}/auth/register`, {
       method: "POST",
       headers: {
@@ -30,7 +41,7 @@ form.addEventListener("submit", async (e) => {
     });
 
     const data = await response.json();
-    // console.log(data.data.student.fullname);
+
     console.log(data);
 
     if (!response.ok) {
@@ -40,9 +51,15 @@ form.addEventListener("submit", async (e) => {
 
     alert("Account created successfully!");
 
-    // redirect to login page
     window.location.href = "./login.html";
   } catch (err) {
-    errorBox.textContent = `Something went wrong`;
+    console.error(err);
+    errorBox.textContent = "Something went wrong";
+  } finally {
+    signupBtn.disabled = false;
+
+    signupBtn.innerHTML = `
+      <span id="btnText">Sign Up</span>
+    `;
   }
 });
