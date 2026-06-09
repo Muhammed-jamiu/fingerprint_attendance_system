@@ -15,7 +15,7 @@ attendanceForm.addEventListener("submit", async (e) => {
 
     attendanceBtn.innerHTML = `
       <div class="spinner"></div>
-      <span>Processing...</span>
+      <span>Marking Attendance...</span>
     `;
 
     const API_URL =
