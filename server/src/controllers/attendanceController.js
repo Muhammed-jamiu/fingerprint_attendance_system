@@ -5,13 +5,9 @@ exports.verifyStudent = async (req, res) => {
   try {
     const { matricNo } = req.body;
 
-    if (!matricNo) {
+    if (!matricNo || matricNo.length < 13) {
       return res.status(400).json({
-        message: "Fill the field required",
-      });
-    } else if (matricNo.length < 13 || matricNo.length > 14) {
-      return res.status(400).json({
-        message: "Matric number must be  13  characters",
+        message: "Matric number is required and must be at least 13 characters",
       });
     }
 
