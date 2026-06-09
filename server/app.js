@@ -20,13 +20,9 @@ app.use(express.json());
 app.use(errorHandler);
 app.use(
   cors({
-    origin: true,
+    origin: ["https://fingerprint-attendance-app.netlify.app"],
     credentials: true,
   }),
-  // cors({
-  //   origin: "http://127.0.0.1:5500",
-  //   credentials: true,
-  // }),
 );
 app.use("/public", express.static(path.join(__dirname, "public")));
 
