@@ -1,5 +1,5 @@
 const captureBtn = document.getElementById("captureBtn");
-
+const thumbInputs = document.querySelectorAll('input[name="thumb"]');
 const saveBtn = document.getElementById("saveBtn");
 
 const fingerprintImage = document.getElementById("fingerprintImage");
@@ -11,6 +11,22 @@ const scanLine = document.getElementById("scanLine");
 const placeholder = document.getElementById("placeholder");
 
 let capturedFingerprint = null;
+
+thumbInputs.forEach((input) => {
+  input.addEventListener("change", () => {
+    if (!capturedFingerprint) return;
+
+    capturedFingerprint = null;
+
+    fingerprintImage.src = "";
+    fingerprintImage.classList.add("hidden");
+
+    placeholder.classList.remove("hidden");
+    placeholder.innerText = "Thumb changed. Capture fingerprint again.";
+
+    scanLine.classList.add("hidden");
+  });
+});
 
 // CAPTURE FINGERPRINT
 captureBtn.addEventListener("click", async () => {

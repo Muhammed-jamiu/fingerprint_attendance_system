@@ -4,8 +4,6 @@ const Student = require("../models/Student");
 // CAPTURE FINGERPRINT
 exports.captureFingerprint = async (req, res) => {
   try {
-    const fingerprintId = "FP" + Math.floor(100000 + Math.random() * 900000);
-
     const baseUrl = `${req.protocol}://${req.get("host")}`;
 
     const images = [
