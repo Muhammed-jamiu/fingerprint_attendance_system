@@ -174,12 +174,14 @@ npm start
 ### Backend Packages
 
 ```bash
+## Navigate to the server folder and locate package.json to see all the below package:
 npm install express
 npm install mongoose
 npm install jsonwebtoken
 npm install bcryptjs
 npm install cors
 npm install dotenv
+
 
 npm install nodemon --save-dev
 ```
