@@ -149,12 +149,6 @@ Install dependencies:
 npm install
 ```
 
-Create a `.env` file if required:
-
-```env
-API_URL=https://fingerprint-attendance-app.netlify.app
-```
-
 Run the frontend application:
 
 ```bash
