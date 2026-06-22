@@ -190,6 +190,8 @@ Additional frontend packages may vary depending on the implementation.
 
 ---
 
+## download mongoDB Compas for the database set up on your machine
+
 ## Project Structure
 
 ```text
